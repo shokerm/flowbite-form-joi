@@ -12,7 +12,7 @@ function LoginJoi() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm({
     defaultValues: initialFormData,
     mode: "onChange",
@@ -21,10 +21,6 @@ function LoginJoi() {
 
   const onSubmit = (form: any) => {
     console.log("Form data", form);
-  };
-
-  const checkErrors = () => {
-    return errors.email === undefined && errors.password === undefined;
   };
 
   return (
@@ -49,7 +45,7 @@ function LoginJoi() {
       {errors.password && (
         <span className="text-sm text-red-500">{errors.password?.message}</span>
       )}
-      <Button type="submit" disabled={!checkErrors()}>
+      <Button type="submit" disabled={!isValid}>
         SUBMIT
       </Button>
     </form>
